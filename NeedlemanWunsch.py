@@ -2,9 +2,9 @@ import numpy as np
 
 GAP = -6
 
-DIAGONAL = '🡼'
-HORIZONTAL = '🡸'
-VERTICAL = '🡹'
+DIAGONAL = 'D'
+HORIZONTAL = 'H'
+VERTICAL = 'V'
 
 class COST:
     def __init__(self, _FILEREAD):
