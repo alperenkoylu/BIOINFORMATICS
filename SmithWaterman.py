@@ -1,4 +1,7 @@
 import numpy as np
+np.set_printoptions(edgeitems=10, threshold=1000, linewidth=1000)
+#np.set_printoptions(threshold=3000, linewidth=3000)
+#If you need to observe matrices every item uncomment above line
 
 GAP = -6
 
@@ -142,6 +145,15 @@ class COMPARISON:
             else:
                 self.SCORE = self.SCORE + int(self.RET_COST(self.OUTPUT1[i], self.OUTPUT2[i]))
         
+def PrintCostMatrix(matrix, _gap):
+    print("   -  A  T  C  G")
+    print("- %+d" % (int(_gap)) + " %+d" % (int(_gap)) + " %+d" % (int(_gap)) + " %+d" % (int(_gap)) + " %+d" % (int(_gap)))
+    print("A %+d" % (int(_gap)) + " %+d" % (int(matrix.AA)) + " %+d" % (int(matrix.TA)) + " %+d" % (int(matrix.CA)) + " %+d" % (int(matrix.GA)))
+    print("T %+d" % (int(_gap)) + " %+d" % (int(matrix.TA)) + " %+d" % (int(matrix.TT)) + " %+d" % (int(matrix.CT)) + " %+d" % (int(matrix.GT)))
+    print("C %+d" % (int(_gap)) + " %+d" % (int(matrix.CA)) + " %+d" % (int(matrix.CT)) + " %+d" % (int(matrix.CC)) + " %+d" % (int(matrix.GC)))
+    print("G %+d" % (int(_gap)) + " %+d" % (int(matrix.GA)) + " %+d" % (int(matrix.GT)) + " %+d" % (int(matrix.GC)) + " %+d" % (int(matrix.GG)))
+    return ''
+
 # --- MAIN ---
 MAX_COST = COST([0,0,0,0,0,0,0,0,0,0])
 MAX_COMP = COMPARISON("","","")
@@ -168,37 +180,37 @@ for i in range(len(costs)):
     
     for k in range(0, len(C_LIST)):
         print(str(k+1) + " ------------------------------------------\n")
-        print(C_LIST[k].DIRECTION_MATRIX) 
-        print("\n")
+        print("\nDIRECTION MATRIX:")
+        print(C_LIST[k].DIRECTION_MATRIX)
+        print("\nSCORING MATRIX:")
         print(C_LIST[k].SCORING_MATRIX)
-        print("\n")
+        print("\nOUTPUTS:")
         print(''.join(C_LIST[k].OUTPUT1))
         print(''.join(C_LIST[k].OUTPUT2))
         print("\n")
-        print("BACKTRACK POS X:" + str(C_LIST[k].SEARCH_I) +" Y:" + str(C_LIST[k].SEARCH_J))
         print("SCORE: " + str(C_LIST[k].SCORE))
+        print("\nCOST MATRIX:")
+        print(PrintCostMatrix(COST_LIST[i], GAP))
         print("\n-----------------------------------------------\n\n")
         if(C_LIST[k].SCORE > MAX_COMP.SCORE):
             MAX_COMP = C_LIST[k]
             MAX_COST = COST_LIST[i]
-            
-            
-
+        
+print("\n-----------------------------------------------------------------------------------")
+print("\n-----------------------------------------------------------------------------------")
+print("\n-----------------------------------------------------------------------------------\n")
 print("MAXIMUM SCORE WITH PROVIDING COST MATRIX ------------------------------------------\n")
+print("\nDIRECTION MATRIX:")
 print(MAX_COMP.DIRECTION_MATRIX) 
-print("\n")
+print("\nSCORING MATRIX:")
 print(MAX_COMP.SCORING_MATRIX)
-print("\n")
-print("BACKTRACK POS X:" + str(MAX_COMP.SEARCH_I) +" Y:" + str(MAX_COMP.SEARCH_J))
 print("\n")
 print(''.join(MAX_COMP.OUTPUT1))
 print(''.join(MAX_COMP.OUTPUT2))
 print("\n")
 print("SCORE: " + str(MAX_COMP.SCORE))
-print("\nCOST MATRIX\n")
-print("   -  A  T  C  G")
-print("- %+d" % (int(GAP)) + " %+d" % (int(GAP)) + " %+d" % (int(GAP)) + " %+d" % (int(GAP)) + " %+d" % (int(GAP)))
-print("A %+d" % (int(GAP)) + " %+d" % (int(MAX_COST.AA)) + " %+d" % (int(MAX_COST.TA)) + " %+d" % (int(MAX_COST.CA)) + " %+d" % (int(MAX_COST.GA)))
-print("T %+d" % (int(GAP)) + " %+d" % (int(MAX_COST.TA)) + " %+d" % (int(MAX_COST.TT)) + " %+d" % (int(MAX_COST.CT)) + " %+d" % (int(MAX_COST.GT)))
-print("C %+d" % (int(GAP)) + " %+d" % (int(MAX_COST.CA)) + " %+d" % (int(MAX_COST.CT)) + " %+d" % (int(MAX_COST.CC)) + " %+d" % (int(MAX_COST.GC)))
-print("G %+d" % (int(GAP)) + " %+d" % (int(MAX_COST.GA)) + " %+d" % (int(MAX_COST.GT)) + " %+d" % (int(MAX_COST.GC)) + " %+d" % (int(MAX_COST.GG)))
+print("\nCOST MATRIX:")
+print(PrintCostMatrix(MAX_COST, GAP))
+print("\n-----------------------------------------------------------------------------------")
+print("\n-----------------------------------------------------------------------------------")
+print("\n-----------------------------------------------------------------------------------\n")
