@@ -1,9 +1,9 @@
 import numpy as np
-np.set_printoptions(edgeitems=10, threshold=1000, linewidth=1000)
+np.set_printoptions(edgeitems=3, threshold=1000, linewidth=1000)
 #np.set_printoptions(threshold=3000, linewidth=3000)
 #If you need to observe matrices every item uncomment above line.
 
-GAP = -6
+GAP = 0
 
 DIAGONAL = 'D'
 HORIZONTAL = 'H'
@@ -32,6 +32,7 @@ class COMPARISON:
         self.OUTPUT2 = []
         self.SCORE = 0
         self.COST = _COST
+        self.OUTPUTX = []
         
         self.FILL_MATRICES()
         self.BACKTRACKING()
@@ -121,11 +122,15 @@ class COMPARISON:
             elif (selected == '0'):
                 exit = 0
         
-        for i in range(len(OUT1)):
-            self.OUTPUT1.append(OUT1.pop())
+        o1 = ' '
+        o2 = ' '
         
-        for i in range(len(OUT2)):
-            self.OUTPUT2.append(OUT2.pop())
+        for i in range(len(OUT1)):
+            o1 = OUT1.pop()
+            o2 = OUT2.pop()
+            self.OUTPUT1.append(o1)
+            self.OUTPUT2.append(o2)
+            self.OUTPUTX.append('|' if o1 == o2 else ' ')
 
     def CALCULATE_SCORE(self):
         for i in range(len(self.OUTPUT1)):
@@ -175,6 +180,7 @@ for i in range(len(costs)):
         print(C_LIST[k].SCORING_MATRIX)
         print("\nOUTPUTS:")
         print(''.join(C_LIST[k].OUTPUT1))
+        print(''.join(C_LIST[k].OUTPUTX))
         print(''.join(C_LIST[k].OUTPUT2))
         print("\n")
         print("SCORE: " + str(C_LIST[k].SCORE))
@@ -195,6 +201,7 @@ print("\nSCORING MATRIX:")
 print(MAX_COMP.SCORING_MATRIX)
 print("\n")
 print(''.join(MAX_COMP.OUTPUT1))
+print(''.join(MAX_COMP.OUTPUTX))
 print(''.join(MAX_COMP.OUTPUT2))
 print("\n")
 print("SCORE: " + str(MAX_COMP.SCORE))

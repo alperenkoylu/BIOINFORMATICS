@@ -5,9 +5,6 @@
 ### Included Algorithms
 1. Needleman-Wunsch Global Alignment Algorithm
 1. Smith-Waterman Local Alignment Algorithm
-1. ~~tBLASTn Algorithm~~ 
-1. ~~Star Aligment Algorithm~~ 
-1. ~~CLUSTALW Algorithm (UPGMA)~~ 
 ------------
 ### Parameters
 - **Sequences**, can be determine in the sequences.txt
