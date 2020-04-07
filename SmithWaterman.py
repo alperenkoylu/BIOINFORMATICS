@@ -86,11 +86,12 @@ class COMPARISON:
                 if (VALUE_H < 0): VALUE_H = 0
                 if (VALUE_V < 0): VALUE_V = 0
                 if (VALUE_D < 0): VALUE_D = 0
-                DIRECTION = [HORIZONTAL, VERTICAL, DIAGONAL]
-                LIST = [VALUE_H, VALUE_V, VALUE_D]
+                DIRECTION = [DIAGONAL, HORIZONTAL, VERTICAL]
+                LIST = [VALUE_D, VALUE_H, VALUE_V]
                 INDEX = LIST.index(max(LIST))
                 scoring_matrix[i][j] = LIST[INDEX]
                 if(LIST[INDEX] > VALUE_MAX) :
+                    VALUE_MAX = LIST[INDEX]
                     self.SEARCH_I = i
                     self.SEARCH_J = j
                 direction_matrix[i][j] = DIRECTION[INDEX]
@@ -174,6 +175,7 @@ for i in range(len(costs)):
         print(''.join(C_LIST[k].OUTPUT1))
         print(''.join(C_LIST[k].OUTPUT2))
         print("\n")
+        print("BACKTRACK POS X:" + str(C_LIST[k].SEARCH_I) +" Y:" + str(C_LIST[k].SEARCH_J))
         print("SCORE: " + str(C_LIST[k].SCORE))
         print("\n-----------------------------------------------\n\n")
         if(C_LIST[k].SCORE > MAX_COMP.SCORE):
@@ -186,6 +188,8 @@ print("MAXIMUM SCORE WITH PROVIDING COST MATRIX --------------------------------
 print(MAX_COMP.DIRECTION_MATRIX) 
 print("\n")
 print(MAX_COMP.SCORING_MATRIX)
+print("\n")
+print("BACKTRACK POS X:" + str(MAX_COMP.SEARCH_I) +" Y:" + str(MAX_COMP.SEARCH_J))
 print("\n")
 print(''.join(MAX_COMP.OUTPUT1))
 print(''.join(MAX_COMP.OUTPUT2))
