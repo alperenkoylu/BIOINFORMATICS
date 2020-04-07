@@ -1,7 +1,7 @@
 import numpy as np
 np.set_printoptions(edgeitems=10, threshold=1000, linewidth=1000)
 #np.set_printoptions(threshold=3000, linewidth=3000)
-#If you need to observe matrices every item uncomment above line
+#If you need to observe matrices every item uncomment above line.
 
 GAP = -6
 
