@@ -9,7 +9,7 @@
 1. ~~Star Aligment Algorithm~~ 
 1. ~~CLUSTALW Algorithm (UPGMA)~~ 
 ------------
-###Usage
+### Usage
 - **Sequences**, can be determine in the sequences.txt
 Ps: First sequence line will be compared by other sequences, consider as a master sequence.
 - **Cost Matrices**, can be set via editing cost.txt
