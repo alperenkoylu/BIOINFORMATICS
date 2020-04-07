@@ -1,1 +1,0 @@
-print ("BLAST Algorithm")

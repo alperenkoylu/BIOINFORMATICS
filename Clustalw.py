@@ -1,1 +1,0 @@
-print ("CLUSTALW Algorithm (UPGMA)")
