@@ -92,13 +92,10 @@ class COMPARISON:
         OUT1 = []
         OUT2 = []
         
-        LENA = len(self.SEQ1)
-        LENB = len(self.SEQ2)
-        
         direction_matrix = self.DIRECTION_MATRIX
         
-        i = LENA
-        j = LENB
+        i = len(self.SEQ1)
+        j = len(self.SEQ2)
                 
         exit=1
         

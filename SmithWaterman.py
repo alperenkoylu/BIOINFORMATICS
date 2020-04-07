@@ -29,6 +29,8 @@ class COMPARISON:
         self.OUTPUT2 = []
         self.SCORE = 0
         self.COST = _COST
+        self.SEARCH_I = 0
+        self.SEARCH_J = 0
         
         self.FILL_MATRICES()
         self.BACKTRACKING()
@@ -59,6 +61,8 @@ class COMPARISON:
                 return self.COST.GC
     
     def FILL_MATRICES(self) :
+        VALUE_MAX = 0
+        
         LENA = len(self.SEQ1)
         LENB = len(self.SEQ2)
         
@@ -82,10 +86,13 @@ class COMPARISON:
                 if (VALUE_H < 0): VALUE_H = 0
                 if (VALUE_V < 0): VALUE_V = 0
                 if (VALUE_D < 0): VALUE_D = 0
-                DIRECTION = [DIAGONAL, HORIZONTAL, VERTICAL]
-                LIST = [VALUE_D, VALUE_H, VALUE_V]
+                DIRECTION = [HORIZONTAL, VERTICAL, DIAGONAL]
+                LIST = [VALUE_H, VALUE_V, VALUE_D]
                 INDEX = LIST.index(max(LIST))
                 scoring_matrix[i][j] = LIST[INDEX]
+                if(LIST[INDEX] > VALUE_MAX) :
+                    self.SEARCH_I = i
+                    self.SEARCH_J = j
                 direction_matrix[i][j] = DIRECTION[INDEX]
                 
         self.SCORING_MATRIX = scoring_matrix
@@ -94,14 +101,11 @@ class COMPARISON:
     def BACKTRACKING(self):
         OUT1 = []
         OUT2 = []
-        
-        LENA = len(self.SEQ1)
-        LENB = len(self.SEQ2)
-        
+                
         direction_matrix = self.DIRECTION_MATRIX
         
-        i = LENA
-        j = LENB
+        i = self.SEARCH_I
+        j = self.SEARCH_J
                 
         exit=1
         
