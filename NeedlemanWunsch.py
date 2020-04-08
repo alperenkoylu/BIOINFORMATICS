@@ -1,14 +1,21 @@
 import numpy as np
-np.set_printoptions(edgeitems=3, threshold=1000, linewidth=1000)
+import pandas as pd
+import seaborn as sb;
+import matplotlib.pyplot as plt
+
+np.set_printoptions(edgeitems=5, threshold=1000, linewidth=1000)
 #np.set_printoptions(threshold=3000, linewidth=3000)
 #If you need to observe matrices every item uncomment above line.
 
-GAP = 0
-
+GAP = -6
+'''
+DIAGONAL = '🡼'
+HORIZONTAL = '🡸'
+VERTICAL = '🡹'
+'''
 DIAGONAL = 'D'
 HORIZONTAL = 'H'
 VERTICAL = 'V'
-
 class COST:
     def __init__(self, _FILEREAD):
         self.AA = _FILEREAD[0]
@@ -191,10 +198,7 @@ for i in range(len(costs)):
             MAX_COMP = C_LIST[k]
             MAX_COST = COST_LIST[i]
         
-print("\n-----------------------------------------------------------------------------------")
-print("\n-----------------------------------------------------------------------------------")
-print("\n-----------------------------------------------------------------------------------\n")
-print("MAXIMUM SCORE WITH PROVIDING COST MATRIX ------------------------------------------\n")
+print("MAXIMUM SCORE WITH PROVIDING COST MATRIX\n")
 print("\nDIRECTION MATRIX:")
 print(MAX_COMP.DIRECTION_MATRIX) 
 print("\nSCORING MATRIX:")
@@ -207,6 +211,26 @@ print("\n")
 print("SCORE: " + str(MAX_COMP.SCORE))
 print("\nCOST MATRIX:")
 print(PrintCostMatrix(MAX_COST, GAP))
-print("\n-----------------------------------------------------------------------------------")
-print("\n-----------------------------------------------------------------------------------")
-print("\n-----------------------------------------------------------------------------------\n")
+'''
+row = ['-']
+col = ['-']
+
+for i in list(MAX_COMP.SEQ1):
+    row.append(i)
+    
+for i in list(MAX_COMP.SEQ2):
+    col.append(i)
+   
+sb.set(font_scale=1)
+
+gray = ["#EEEEEE"]
+
+thescoringmatrix = pd.DataFrame(data=MAX_COMP.SCORING_MATRIX, index=row, columns=col)
+
+plt.figure(figsize = (25,25))
+
+#figScore = sb.heatmap(thescoringmatrix, annot=True, fmt='g', cmap=gray, cbar=False)
+
+figDirect = sb.heatmap(thescoringmatrix, annot=MAX_COMP.DIRECTION_MATRIX, fmt='', cmap=gray, cbar=False)
+plt.show()
+'''

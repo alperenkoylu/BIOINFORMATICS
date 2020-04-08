@@ -1,5 +1,9 @@
 import numpy as np
-np.set_printoptions(edgeitems=3, threshold=1000, linewidth=1000)
+import pandas as pd
+import seaborn as sb;
+import matplotlib.pyplot as plt
+
+np.set_printoptions(edgeitems=5, threshold=1000, linewidth=1000)
 #np.set_printoptions(threshold=3000, linewidth=3000)
 #If you need to observe matrices every item uncomment above line.
 
@@ -87,13 +91,14 @@ class COMPARISON:
                 VALUE_H = scoring_matrix[i][j-1] + GAP
                 VALUE_V = scoring_matrix[i-1][j] + GAP
                 VALUE_D = scoring_matrix[i-1][j-1] + int(self.RET_COST(self.SEQ1[i-1], self.SEQ2[j-1]))
-                if (VALUE_H < 0): VALUE_H = 0
-                if (VALUE_V < 0): VALUE_V = 0
-                if (VALUE_D < 0): VALUE_D = 0
-                DIRECTION = [DIAGONAL, HORIZONTAL, VERTICAL]
+                #if (VALUE_H < 0): VALUE_H = 0
+                #if (VALUE_V < 0): VALUE_V = 0
+                #if (VALUE_D < 0): VALUE_D = 0
+                DIRECTION = [DIAGONAL, HORIZONTAL, VERTICAL, ]
                 LIST = [VALUE_D, VALUE_H, VALUE_V]
                 INDEX = LIST.index(max(LIST))
                 scoring_matrix[i][j] = LIST[INDEX]
+                if(scoring_matrix[i][j] < 0): scoring_matrix[i][j] = 0
                 if(LIST[INDEX] > VALUE_MAX) :
                     VALUE_MAX = LIST[INDEX]
                     self.SEARCH_I = i
@@ -202,10 +207,7 @@ for i in range(len(costs)):
             MAX_COMP = C_LIST[k]
             MAX_COST = COST_LIST[i]
         
-print("\n-----------------------------------------------------------------------------------")
-print("\n-----------------------------------------------------------------------------------")
-print("\n-----------------------------------------------------------------------------------\n")
-print("MAXIMUM SCORE WITH PROVIDING COST MATRIX ------------------------------------------\n")
+print("MAXIMUM SCORE WITH PROVIDING COST MATRIX\n")
 print("\nDIRECTION MATRIX:")
 print(MAX_COMP.DIRECTION_MATRIX) 
 print("\nSCORING MATRIX:")
@@ -218,6 +220,26 @@ print("\n")
 print("SCORE: " + str(MAX_COMP.SCORE))
 print("\nCOST MATRIX:")
 print(PrintCostMatrix(MAX_COST, GAP))
-print("\n-----------------------------------------------------------------------------------")
-print("\n-----------------------------------------------------------------------------------")
-print("\n-----------------------------------------------------------------------------------\n")
+'''
+row = ['-']
+col = ['-']
+
+for i in list(MAX_COMP.SEQ1):
+    row.append(i)
+    
+for i in list(MAX_COMP.SEQ2):
+    col.append(i)
+   
+sb.set(font_scale=1)
+
+gray = ["#EEEEEE"]
+
+thescoringmatrix = pd.DataFrame(data=MAX_COMP.SCORING_MATRIX, index=row, columns=col)
+
+plt.figure(figsize = (25,25))
+
+#figScore = sb.heatmap(thescoringmatrix, annot=True, fmt='g', cmap=gray, cbar=False)
+
+figDirect = sb.heatmap(thescoringmatrix, annot=MAX_COMP.DIRECTION_MATRIX, fmt='', cmap=gray, cbar=False)
+plt.show()
+'''
