@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # BIL458 BIOINFORMATICS HOMERWORK 1
+=======
+# BIL458 BIOINFORMATICS HOMEWORK 1
+>>>>>>> da808b3ebadc3b2323f2b51ada7030ac11b05ecd
 ### Prepared By: [Alperen Köylü](https://github.com/alperenkoylu "Alperen Köylü")
 Thanks to [Can Okan Taşkıran](https://github.com/CantOkan "Can Okan Taşkıran") and [Şeref Fatih Yılmaz](https://github.com/sfatihyilmaz "Şeref Fatih Yılmaz") for their contribution in order to building the logic behind this algorithm.
 ###### Final Report: [Click to View](https://github.com/alperenkoylu/BIOINFORMATICS/blob/master/report.pdf "Click to View")
